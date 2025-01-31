@@ -7,7 +7,7 @@ const CT02 = require('./resources_schemas/CT02.schema.json')
 const ajv = new Ajv();
 
 const Id_list = [1, 2, 5, 8];
-const valuesOfLimit = [1, 2, 5, 6, 7 ];
+const valuesOfLimit = [1, 2, 5, 6, 7];
 
 test('CT01 - GET - get all User', async ({ request }) => {
 
@@ -33,15 +33,44 @@ for (let id of Id_list) {
 }
 
 for (let value of valuesOfLimit) {
-test(`CT03 - GET - Validate limit for page  - value of limit ${value}`, async ({ request }) => {
-  
-  const response = await request.get(`/users?limit=${value}`);
-  const body = await response.json();
+  test(`CT03 - GET - Validate limit for page  - value of limit ${value}`, async ({ request }) => {
 
-  expect(response.status()).toBe(200);
-  expect(body.length).toBeLessThanOrEqual(value);
-  expect(await ajv.validate(CT01, body)).toBeTruthy();
-})
+    const response = await request.get(`/users?limit=${value}`);
+    const body = await response.json();
+
+    expect(response.status()).toBe(200);
+    expect(body.length).toBeLessThanOrEqual(value);
+    expect(await ajv.validate(CT01, body)).toBeTruthy();
+  })
 
 }
 
+
+test(`CT04 - POST - Create User`, async ({ request }) => {
+  let payloadRequest = {
+    email:'John@gmail.com',
+    username:'johnd',
+    password:'m38rmF$',
+    name:{
+        firstname:'John',
+        lastname:'Doe'
+    },
+    address:{
+        city:'kilcoole',
+        street:'7835 new road',
+        number:3,
+        zipcode:'12926-3874',
+        geolocation:{
+            lat:'-37.3159',
+            long:'81.1496'
+        }
+    },
+    phone:'1-570-236-7033'
+}
+
+  let payload = JSON.stringify(payloadRequest);
+  const response = await request.post('/users', {data : payload});
+
+  expect(response.status()).toBe(200);
+  
+})
