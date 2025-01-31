@@ -7,6 +7,7 @@ const CT02 = require('./resources_schemas/CT02.schema.json')
 const ajv = new Ajv();
 
 const Id_list = [1, 2, 5, 8];
+const valuesOfLimit = [1, 2, 5, 6, 7 ];
 
 test('CT01 - get all User', async ({ request }) => {
 
@@ -29,5 +30,18 @@ for (let id of Id_list) {
     expect(body.id).toBe(id);
     expect(await ajv.validate(CT02, body)).toBeTruthy();
   })
+}
+
+for (let value of valuesOfLimit) {
+test(`CT03 - Validate limit for page  - value of limit ${value}`, async ({ request }) => {
+  
+  const response = await request.get(`/users?limit=${value}`);
+  const body = await response.json();
+
+  expect(response.status()).toBe(200);
+  expect(body.length).toBeLessThanOrEqual(value);
+  expect(await ajv.validate(CT01, body)).toBeTruthy();
+})
+
 }
 
