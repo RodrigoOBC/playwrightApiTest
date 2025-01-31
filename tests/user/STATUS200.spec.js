@@ -9,7 +9,7 @@ const ajv = new Ajv();
 const Id_list = [1, 2, 5, 8];
 const valuesOfLimit = [1, 2, 5, 6, 7 ];
 
-test('CT01 - get all User', async ({ request }) => {
+test('CT01 - GET - get all User', async ({ request }) => {
 
   const response = await request.get('/users');
   const body = await response.json();
@@ -21,7 +21,7 @@ test('CT01 - get all User', async ({ request }) => {
 
 
 for (let id of Id_list) {
-  test(`CT02 - get User by ID ${id}`, async ({ request }) => {
+  test(`CT02 - GET - get User by ID ${id}`, async ({ request }) => {
 
     const response = await request.get(`/users/${id}`);
     const body = await response.json();
@@ -33,7 +33,7 @@ for (let id of Id_list) {
 }
 
 for (let value of valuesOfLimit) {
-test(`CT03 - Validate limit for page  - value of limit ${value}`, async ({ request }) => {
+test(`CT03 - GET - Validate limit for page  - value of limit ${value}`, async ({ request }) => {
   
   const response = await request.get(`/users?limit=${value}`);
   const body = await response.json();
