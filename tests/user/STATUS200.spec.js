@@ -48,29 +48,65 @@ for (let value of valuesOfLimit) {
 
 test(`CT04 - POST - Create User`, async ({ request }) => {
   let payloadRequest = {
-    email:'John@gmail.com',
-    username:'johnd',
-    password:'m38rmF$',
-    name:{
-        firstname:'John',
-        lastname:'Doe'
+    email: 'John@gmail.com',
+    username: 'johnd',
+    password: 'm38rmF$',
+    name: {
+      firstname: 'John',
+      lastname: 'Doe'
     },
-    address:{
-        city:'kilcoole',
-        street:'7835 new road',
-        number:3,
-        zipcode:'12926-3874',
-        geolocation:{
-            lat:'-37.3159',
-            long:'81.1496'
-        }
+    address: {
+      city: 'kilcoole',
+      street: '7835 new road',
+      number: 3,
+      zipcode: '12926-3874',
+      geolocation: {
+        lat: '-37.3159',
+        long: '81.1496'
+      }
     },
-    phone:'1-570-236-7033'
-}
+    phone: '1-570-236-7033'
+  }
 
   let payload = JSON.stringify(payloadRequest);
-  const response = await request.post('/users', {data : payload});
+  const response = await request.post('/users', { data: payload });
 
   expect(response.status()).toBe(200);
-  
+
+})
+
+
+test(`CT05 - PUT - Update number User`, async ({ request }) => {
+  let payloadRequest = {
+    email: 'John@gmail.com',
+    username: 'johnd',
+    password: 'm38rmF$',
+    name: {
+      firstname: 'John',
+      lastname: 'Doe'
+    },
+    address: {
+      city: 'kilcoole',
+      street: '7835 new road',
+      number: 3,
+      zipcode: '12926-3874',
+      geolocation: {
+        lat: '-37.3159',
+        long: '81.1496'
+      }
+    },
+    phone: '1-370-236-7038'
+  }
+
+  let payload = JSON.stringify(payloadRequest);
+  const response = await request.patch('/users/7', { data: payload });
+  const body = await response.json();
+
+
+  expect(response.status()).toBe(200);
+  expect(body.email).toBe(payloadRequest.email);
+  expect(body.phone).toBe(payloadRequest.phone);
+
+
+
 })
