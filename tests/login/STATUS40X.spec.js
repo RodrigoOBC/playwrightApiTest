@@ -3,7 +3,7 @@ import Ajv from 'ajv';
 
 const ajv = new Ajv();
 
-test.only('POST - CT02  - get Token without Password', async ({ request }) => {
+test('POST - CT02  - get Token without Password', async ({ request }) => {
     
     const payloadRequest = JSON.stringify({
         username: "mor_2314",
@@ -26,7 +26,7 @@ test.only('POST - CT02  - get Token without Password', async ({ request }) => {
     expect(body).toBe("username and password are not provided in JSON format")
 })
 
-test.only('POST - CT03  - get Token without UserName', async ({ request }) => {
+test('POST - CT03  - get Token without UserName', async ({ request }) => {
     
     const payloadRequest = JSON.stringify({
         username: "",
@@ -49,7 +49,7 @@ test.only('POST - CT03  - get Token without UserName', async ({ request }) => {
     expect(body).toBe("username and password are not provided in JSON format")
 })
 
-test.only('POST - CT04  - get Token without UserName and Password', async ({ request }) => {
+test('POST - CT04  - get Token without UserName and Password', async ({ request }) => {
 
     const payloadRequest = JSON.stringify({
         username: "",
@@ -72,7 +72,7 @@ test.only('POST - CT04  - get Token without UserName and Password', async ({ req
     expect(body).toBe("username and password are not provided in JSON format")
 })
 
-test.only('POST - CT05  - get Token with invalide credential ', async ({ request }) => {
+test('POST - CT05  - get Token with invalide credential ', async ({ request }) => {
 
     const payloadRequest = JSON.stringify({
         username: "teste",
