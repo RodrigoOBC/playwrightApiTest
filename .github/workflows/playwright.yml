@@ -23,7 +23,7 @@ jobs:
     - name: Install Playwright Browsers
       run: npx playwright install 
     - name: Run Playwright tests
-      run: echo "The value is $BASEURL"
+      run: echo "The value is $USERNAMEAPI"
       env:
           PASSWORDAPI: ${{ secrets.PASSWORDAPI }}
     - uses: actions/upload-artifact@v4
