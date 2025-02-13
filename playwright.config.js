@@ -16,7 +16,7 @@ export default defineConfig({
   // Configurações globais para todos os testes
   use: {
     // URL base para as requisições da API
-    baseURL: process.env.baseUrl, // Substitua pela URL da sua API
+    baseURL: process.env.BASEURL, // Substitua pela URL da sua API
 
     // Headers globais (opcional)
     extraHTTPHeaders: {
