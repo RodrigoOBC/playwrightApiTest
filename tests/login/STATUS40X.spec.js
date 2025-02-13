@@ -6,7 +6,7 @@ const ajv = new Ajv();
 test('POST - /login - CT02  - get Token without Password', async ({ request }) => {
     
     const payloadRequest = JSON.stringify({
-        username: process.env.USERNAMEAPI,,
+        username: process.env.USERNAMEAPI,
         password: ""
     })
     
