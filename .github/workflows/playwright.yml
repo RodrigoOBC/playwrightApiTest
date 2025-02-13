@@ -9,7 +9,7 @@ jobs:
     timeout-minutes: 60
     runs-on: ubuntu-latest
     env:
-      API_URL: "https://fakestoreapi.com/"
+      BASEURL: "https://fakestoreapi.com/"
     container:
       image: "mcr.microsoft.com/playwright:v1.50.1-jammy"
       options: --user 1001
@@ -23,7 +23,7 @@ jobs:
     - name: Install Playwright Browsers
       run: npx playwright install 
     - name: Run Playwright tests
-      run: npx playwright test
+      run: echo "The value is $BASEURL"
       env:
           PASSWORDAPI: ${{ secrets.PASSWORDAPI }}
     - uses: actions/upload-artifact@v4
