@@ -24,6 +24,8 @@ jobs:
       run: npx playwright install 
     - name: Run Playwright tests
       run: npx playwright test
+      env:
+          PASSWORDAPI: ${{ secrets.PASSWORDAPI }}
     - uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}
       with:
