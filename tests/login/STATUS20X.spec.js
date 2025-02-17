@@ -14,6 +14,8 @@ test('POST - /login - CT01  - get Token with Suscess', async ({ request }) => {
     const headers = {
         'Content-Type': 'application/json'
     };
+
+    console.log(payloadRequest)
     
     const response = await request.post('https://fakestoreapi.com/auth/login', {
         headers: {
