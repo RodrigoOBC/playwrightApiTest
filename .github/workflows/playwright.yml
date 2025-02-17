@@ -9,7 +9,8 @@ jobs:
     timeout-minutes: 60
     runs-on: ubuntu-latest
     env:
-      BASEURL: "https://fakestoreapi.com/"
+      BASEURL: ${{ vars.BASEURL }}
+      USERNAMEAPI: ${{ vars.USERNAMEAPI }}
       PASSWORDAPI: ${{ secrets.PASSWORDAPI }}
     container:
       image: "mcr.microsoft.com/playwright:v1.50.1-jammy"
