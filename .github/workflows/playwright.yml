@@ -10,6 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       BASEURL: "https://fakestoreapi.com/"
+      PASSWORDAPI: ${{ secrets.PASSWORDAPI }}
     container:
       image: "mcr.microsoft.com/playwright:v1.50.1-jammy"
       options: --user 1001
@@ -23,9 +24,7 @@ jobs:
     - name: Install Playwright Browsers
       run: npx playwright install 
     - name: Run Playwright tests
-      run: echo "The value is $USERNAMEAPI"
-      env:
-          PASSWORDAPI: ${{ secrets.PASSWORDAPI }}
+      run: echo "The value is $PASSWORDAPI"
     - uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}
       with:
