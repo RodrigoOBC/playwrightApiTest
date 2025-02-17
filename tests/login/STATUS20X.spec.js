@@ -4,7 +4,7 @@ import Ajv from 'ajv';
 const CT01 = require('./resources_schemas/CT01.schema.json')
 const ajv = new Ajv();
 
-test.only('POST - /login - CT01  - get Token with Suscess', async ({ request }) => {
+test('POST - /login - CT01  - get Token with Suscess', async ({ request }) => {
 
     const payloadRequest = JSON.stringify({
         username: process.env.USERNAMEAPI,
