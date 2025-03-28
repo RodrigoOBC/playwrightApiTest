@@ -1,6 +1,21 @@
 import { defineConfig, devices } from '@playwright/test';
 require('dotenv').config()
 
+
+const reportConfig = {
+  open: process.env.CI ? "never" : "always",
+  folderPath: "temp/ortoni-report",
+  filename: "index.html",
+  title: "Playwright Test Report",
+  showProject: !true,
+  projectName: "Playwright Test API",
+  testType: "e2e",
+  authorName: "RodrigoBOCabral",
+  base64Image: false,
+  stdIO: false,
+  preferredTheme: "dark"
+};
+
 export default defineConfig({
   // Nome do projeto (opcional)
   name: 'API Tests',
@@ -25,10 +40,7 @@ export default defineConfig({
   },
 
   // Configurações de relatórios
-  reporter: [
-    ['list'], // Relatório no terminal
-    ['html', { outputFolder: 'playwright-report' }], // Relatório HTML
-  ],
+  reporter: [['line'],["ortoni-report", reportConfig]],
 
   // Hooks globais (opcional)
   // globalSetup: './global-setup.js', // Executa antes de todos os testes
