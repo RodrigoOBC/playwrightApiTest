@@ -1,4 +1,5 @@
-import { test, expect } from '@playwright/test';
+const { test, expect } = require('@playwright/test');
+
 import Ajv from 'ajv';
 
 const CT01 = require('./resources_schemas/CT01.schema.json')
@@ -14,13 +15,9 @@ test('POST - /login - CT01  - get Token with Suscess', async ({ request }) => {
     const headers = {
         'Content-Type': 'application/json'
     };
-
-    console.log(payloadRequest)
     
     const response = await request.post('https://fakestoreapi.com/auth/login', {
-        headers: {
-            'Content-Type': 'application/json'
-        },
+        headers: headers,
         data: payloadRequest
     });
     const body = await response.json();
